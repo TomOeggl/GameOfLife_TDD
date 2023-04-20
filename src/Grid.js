@@ -13,9 +13,9 @@ class Grid {
 
   fillGrid(contentToFillIn) {
     if (!this.filled) {
-      this.gridArray.forEach((gridElement) => {
-        gridElement = contentToFillIn;
-      })
+      for(let i = 0; i < this.gridArray.length; i++ ){
+        this.gridArray[i] = contentToFillIn;
+      }
     }
   }
 
