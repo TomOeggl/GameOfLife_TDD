@@ -15,6 +15,21 @@ describe("The ReferenceArray", () => {
     nextAliveArray.setKeyAndDefaultValue("isAliveNextRound", false);
 
     expect(nextAliveArray.array[0].isAliveNextRound).toBe(false);
-
   });
+
+  test("returns an array with all entries that match the input value trough the getAllEntriesWithValue(value) method", () => {
+    let testGrid = new Grid(3, 3);
+    let nextAliveArray = new ReferenceArray(testGrid);
+    nextAliveArray.setKeyAndDefaultValue("isAliveNextRound", false);
+
+    let array = nextAliveArray.array;
+    array[5].isAliveNextRound = true;
+    array[6].isAliveNextRound = true;
+
+
+    let filteredArray = nextAliveArray.getAllEntriesWithValue(true);
+    
+    expect(filteredArray).toEqual([5, 6]);
+  });
+
 });
