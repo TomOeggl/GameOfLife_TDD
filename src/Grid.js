@@ -11,15 +11,6 @@ class Grid {
     this.gridArray = new Array(this.arrayLength);
   }
 
-  fillGrid(contentToFillIn) {
-    if (!this.filled) {
-      for(let i = 0; i < this.gridArray.length; i++ ){
-        this.gridArray[i] = contentToFillIn;
-      }
-    }
-  }
-
-
   getNeighbour(startIndex, direction) {
     let gridWidth = this.width;
     let self = this;

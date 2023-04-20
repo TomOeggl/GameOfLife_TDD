@@ -33,7 +33,7 @@ class Cell {
     let aliveCounter = 0;
     let gridArray = this.parentGrid.gridArray;
 
-    let neighbours = getAllNeighbourIndezes(this);
+    let neighbours = this.getAllNeighbourIndezes();
 
     for(let i = 0; i < neighbours.length; i++){
       if(gridArray[i].isAlive){
@@ -43,23 +43,23 @@ class Cell {
 
     return aliveCounter;
 
-    function getAllNeighbourIndezes(self){
-      let neighbourIndezes = [];
-      let grid = self.parentGrid;
-      let selfIndex = self.indexPosition;
-      
-      neighbourIndezes.push(grid.getNeighbour(selfIndex, "top"));
-      neighbourIndezes.push(grid.getNeighbour(selfIndex, "topRight"));
-      neighbourIndezes.push(grid.getNeighbour(selfIndex, "right"));
-      neighbourIndezes.push(grid.getNeighbour(selfIndex, "bottomRight"));
-      neighbourIndezes.push(grid.getNeighbour(selfIndex, "bottom"));
-      neighbourIndezes.push(grid.getNeighbour(selfIndex, "bottomLeft"));
-      neighbourIndezes.push(grid.getNeighbour(selfIndex, "left"));
-      neighbourIndezes.push(grid.getNeighbour(selfIndex, "topLeft"));
+  }
 
-      return neighbourIndezes;
-    }
+  getAllNeighbourIndezes(){
+    let neighbourIndezes = [];
+    let grid = this.parentGrid;
+    let index = this.indexPosition;
     
+    neighbourIndezes.push(grid.getNeighbour(index, "top"));
+    neighbourIndezes.push(grid.getNeighbour(index, "topRight"));
+    neighbourIndezes.push(grid.getNeighbour(index, "right"));
+    neighbourIndezes.push(grid.getNeighbour(index, "bottomRight"));
+    neighbourIndezes.push(grid.getNeighbour(index, "bottom"));
+    neighbourIndezes.push(grid.getNeighbour(index, "bottomLeft"));
+    neighbourIndezes.push(grid.getNeighbour(index, "left"));
+    neighbourIndezes.push(grid.getNeighbour(index, "topLeft"));
+
+    return neighbourIndezes;
   }
 
   setIndexPosition(targetIndex){
