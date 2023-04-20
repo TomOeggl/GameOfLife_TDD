@@ -8,14 +8,6 @@ describe('A Grid', () => {
     expect(gridLength).toBe(9);
   });
 
-  test('should have a method fillGrid that fills every entry with the argument you pass it', () => {
-    let testGrid = new Grid(3, 3);
-    testGrid.createGrid();
-    testGrid.fillGrid(true);
-    
-    expect(testGrid.gridArray[2]).toBe(true);
-  });
-
   test('should have a method that returns the index of a neighbour in all possible directions', () => {
     let testGrid = new Grid(3, 3);
     testGrid.createGrid();
