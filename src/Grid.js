@@ -4,7 +4,6 @@ class Grid {
     this.height = height;
     this.arrayLength = width * height;
     this.gridArray;
-    this.filled = false;
   }
 
   createGrid() {
@@ -121,8 +120,7 @@ class Grid {
   }
 
   isRightEdge(cellIndex) {
-    let modulo = (cellIndex + 1) % this.width;
-    return modulo === 0;
+    return (cellIndex + 1) % this.width === 0;
   }
 
   isBottomEdge(cellIndex) {
@@ -132,8 +130,7 @@ class Grid {
   }
 
   isLeftEdge(cellIndex) {
-    let modulo = cellIndex % this.width;
-    return modulo === 0;
+    return cellIndex % this.width === 0;
   }
 
   wrapAroundTopEdge(cellIndex) {
