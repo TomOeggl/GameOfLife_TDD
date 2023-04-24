@@ -11,10 +11,13 @@ class Grid {
   }
 
   getNeighbour(startIndex, direction) {
-    let gridWidth = this.width;
+    const gridWidth = this.width;
+    const isTopEdge = this.isTopEdge(startIndex);
+    const isRightEdge = this.isRightEdge(startIndex);
+    const isBottomEdge = this.isBottomEdge(startIndex);
+    const isLeftEdge = this.isLeftEdge(startIndex);
 
     const getTopNeighbour = (ofPositionIndex) => {
-      const isTopEdge = this.isTopEdge(ofPositionIndex);
       if (isTopEdge) {
         return this.wrapAroundTopEdge(ofPositionIndex);
       }
@@ -22,32 +25,32 @@ class Grid {
     };
 
     const getRightNeighbour = (ofPositionIndex) => {
-      let isRightEdge = this.isRightEdge(ofPositionIndex);
+      //let isRightEdge = this.isRightEdge(ofPositionIndex);
       if (isRightEdge) {
         return this.wrapAroundRightEdge(ofPositionIndex);
       }
       return ofPositionIndex + 1;
-    }
-    
+    };
+
     const getBottomNeighbour = (ofPositionIndex) => {
-      let isBottomEdge = this.isBottomEdge(ofPositionIndex);
+      //let isBottomEdge = this.isBottomEdge(ofPositionIndex);
       if (isBottomEdge) {
         return this.wrapAroundBottomEdge(ofPositionIndex);
       }
       return ofPositionIndex - gridWidth;
-    }
-    
+    };
+
     const getLeftNeighbour = (ofPositionIndex) => {
-      let isLeftEdge = this.isLeftEdge(ofPositionIndex);
+      //let isLeftEdge = this.isLeftEdge(ofPositionIndex);
       if (isLeftEdge) {
         return this.wrapAroundLeftEdge(ofPositionIndex);
       }
       return ofPositionIndex - 1;
-    }
-    
+    };
+
     const getTopRightNeighbour = (ofPositionIndex) => {
-      let isTopEdge = this.isTopEdge(ofPositionIndex);
-      let isRightEdge = this.isRightEdge(ofPositionIndex);
+      //let isTopEdge = this.isTopEdge(ofPositionIndex);
+      //let isRightEdge = this.isRightEdge(ofPositionIndex);
       if (isTopEdge) {
         let wrapped = this.wrapAroundTopEdge(ofPositionIndex);
         return getRightNeighbour(wrapped);
@@ -57,11 +60,11 @@ class Grid {
         return getTopNeighbour(wrapped);
       }
       return ofPositionIndex + gridWidth + 1;
-    }
-    
+    };
+
     const getBottomRightNeighbour = (ofPositionIndex) => {
-      let isBottomEdge = this.isBottomEdge(ofPositionIndex);
-      let isRightEdge = this.isRightEdge(ofPositionIndex);
+      //let isBottomEdge = this.isBottomEdge(ofPositionIndex);
+      //let isRightEdge = this.isRightEdge(ofPositionIndex);
       if (isBottomEdge) {
         let wrapped = this.wrapAroundBottomEdge(ofPositionIndex);
         return getRightNeighbour(wrapped);
@@ -71,11 +74,11 @@ class Grid {
         return getBottomNeighbour(wrapped);
       }
       return ofPositionIndex - gridWidth + 1;
-    }
-    
+    };
+
     const getBottomLeftNeighbour = (ofPositionIndex) => {
-      let isBottomEdge = this.isBottomEdge(ofPositionIndex);
-      let isLeftEdge = this.isLeftEdge(ofPositionIndex);
+      //let isBottomEdge = this.isBottomEdge(ofPositionIndex);
+      //let isLeftEdge = this.isLeftEdge(ofPositionIndex);
       if (isBottomEdge) {
         let wrapped = this.wrapAroundBottomEdge(ofPositionIndex);
         return getLeftNeighbour(wrapped);
@@ -85,13 +88,15 @@ class Grid {
         return getBottomNeighbour(wrapped);
       }
       return ofPositionIndex - gridWidth - 1;
-    }
-    
+    };
+
     const getTopLeftNeighbour = (ofPositionIndex) => {
-      let isTopEdge = this.isTopEdge(ofPositionIndex);
-      let isLeftEdge = this.isLeftEdge(ofPositionIndex);
+      //let isTopEdge = this.isTopEdge(ofPositionIndex);
+      //let isLeftEdge = this.isLeftEdge(ofPositionIndex);
       if (isTopEdge) {
+        console.log(ofPositionIndex);
         let wrapped = this.wrapAroundTopEdge(ofPositionIndex);
+        console.log(wrapped)
         return getLeftNeighbour(wrapped);
       }
       if (isLeftEdge) {
@@ -99,7 +104,7 @@ class Grid {
         return getTopNeighbour(wrapped);
       }
       return ofPositionIndex + gridWidth - 1;
-    }
+    };
 
     if (direction === "top") return getTopNeighbour(startIndex);
     if (direction === "right") return getRightNeighbour(startIndex);
@@ -110,7 +115,6 @@ class Grid {
     if (direction === "bottomRight") return getBottomRightNeighbour(startIndex);
     if (direction === "bottomLeft") return getBottomLeftNeighbour(startIndex);
     if (direction === "topLeft") return getTopLeftNeighbour(startIndex);
-
   }
 
   isTopEdge(cellIndex) {
@@ -126,7 +130,7 @@ class Grid {
   isBottomEdge(cellIndex) {
     const bottomMostRowStart = 0;
     const bottomMostRowEnd = bottomMostRowStart + this.width - 1;
-    return  cellIndex >= bottomMostRowStart && cellIndex <= bottomMostRowEnd;
+    return cellIndex >= bottomMostRowStart && cellIndex <= bottomMostRowEnd;
   }
 
   isLeftEdge(cellIndex) {
